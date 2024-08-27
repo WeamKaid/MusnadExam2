@@ -1,0 +1,55 @@
+#System Structure and tables relations:
+
+1-Users Table:
+
+id (Primary Key, Auto-Increment)
+username (Unique, Not Null)
+email (Unique, Not Null)
+password (Not Null)
+created_at (DateTime, Auto-Now-Add)
+updated_at (DateTime, Auto-Now)
+
+2-Roles Table:
+
+id (Primary Key, Auto-Increment)
+name (Unique, Not Null)
+description (Text)
+created_at (DateTime, Auto-Now-Add)
+updated_at (DateTime, Auto-Now)
+
+3-Permissions Table:
+
+id (Primary Key, Auto-Increment)
+name (Unique, Not Null)
+description (Text)
+created_at (DateTime, Auto-Now-Add)
+updated_at (DateTime, Auto-Now)
+
+4-Role_Permissions (Many-to-Many Junction Table):
+
+id (Primary Key, Auto-Increment)
+role_id (Foreign Key, References Roles Table)
+permission_id (Foreign Key, References Permissions Table)
+created_at (DateTime, Auto-Now-Add)
+
+5-User_Roles (Many-to-Many Junction Table):
+
+id (Primary Key, Auto-Increment)
+user_id (Foreign Key, References Users Table)
+role_id (Foreign Key, References Roles Table)
+created_at (DateTime, Auto-Now-Add)
+
+6-Activity_Logs Table:
+
+id (Primary Key, Auto-Increment)
+user_id (Foreign Key, References Users Table)
+action (Varchar, Not Null)
+details (Text)
+created_at (DateTime, Auto-Now-Add)
+
+#The relationships between the tables are as follows:
+
+-One-to-Many: Users to Activity_Logs (one user can have multiple activity logs)
+-Many-to-Many: Users to Roles (one user can have multiple roles, and one role can be assigned to multiple users)
+-Many-to-Many: Roles to Permissions (one role can have multiple permissions, and one permission can be assigned to multiple roles).
+
